@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+    <title>Detail Gudang</title>
+</head>
+
+<body>
+<nav th:replace="~{fragments/navbar :: navbar}"></nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="mt-3">Detail Gudang</h2>
+            <p class="mt-3"><strong>Nama Gudang:</strong> <span th:text="${gudang.nama}"></span></p>
+            <p class="mt-3"><strong>Alamat Gudang:</strong> <span th:text="${gudang.alamatGudang}"></span></p>
+        </div>
+        <div class="col-md-4 text-right">
+            <a type="button" class="btn btn-primary btn-md mt-3" th:href="@{'/gudang/' + ${gudang.id} + '/restock-barang'}">Restock Barang</a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="row text-center mb-2">
+            <h4 class="card-title">Daftar Barang di Gudang</h4>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">SKU Barang</th>
+                <th scope="col">Merek</th>
+                <th scope="col">Stok</th>
+                <th scope="col">Harga</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="gudangBarangs, iterStat : ${gudangBarang}">
+                <td th:text="${iterStat.index + 1}">1</td>
+                <td th:text="${gudangBarangs.barang.sku}">SKU12345</td>
+                <td th:text="${gudangBarangs.barang.merk}">Merek Barang</td>
+                <td th:text="${gudangBarangs.stok}">10</td>
+                <td th:text="${gudangBarangs.barang.hargaBarang}">Harga Barang</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+
+</html>

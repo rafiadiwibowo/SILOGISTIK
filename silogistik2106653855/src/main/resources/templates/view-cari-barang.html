@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+    <title>Cari Barang</title>
+</head>
+
+<body>
+<nav th:replace="~{fragments/navbar :: navbar}"></nav>
+<div class="container">
+    <div class="text-center pt-5">
+        <h2 class="card-title">Cari Barang</h2>
+    </div>
+    <div class="row justify-content-center">
+        <div class="card" style="width: 30rem;">
+            <div class="card-body">
+                <form method="get" action="/gudang/cari-barang">
+                    <div class="form-group">
+                        <label for="merkBarang">Pilih Merk Barang:</label>
+                        <select id="merkBarang" name="sku_barang" class="form-control">
+                            <option value="">-- Semua Merk --</option>
+                            <th:block th:each="barang : ${listBarang}">
+                                <option th:text="${barang.merk}" th:value="${barang.sku}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:if="${not #lists.isEmpty(listGudangBarang)}">
+        <div class="row justify-content-center mt-5">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">#</th> <!-- Tambahkan kolom nomor -->
+                    <th scope="col">Nama</th>
+                    <th scope="col">Alamat Gudang</th>
+                    <th scope="col">Stok</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="gudangBarang, iterStat : ${listGudangBarang}">
+                    <tr>
+                        <td th:text="${iterStat.index + 1}"></td> <!-- Nomor -->
+                        <td th:text="${gudangBarang.gudang.nama}"></td>
+                        <td th:text="${gudangBarang.gudang.alamatGudang}"></td>
+                        <td th:text="${gudangBarang.stok}"></td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
