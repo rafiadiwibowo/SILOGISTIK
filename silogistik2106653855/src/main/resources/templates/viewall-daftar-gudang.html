@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+    <title>View All Gudang</title>
+</head>
+
+<body>
+<nav th:replace="~{fragments/navbar :: navbar}"></nav>
+<div class="container">
+    <div class="text-center pt-5">
+        <h2>Daftar Gudang</h2>
+    </div>
+
+    <table id="gudangTable" class="table table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nama</th>
+            <th>Alamat Gudang</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="gudang, iterStat: ${listGudang}">
+            <tr>
+                <td th:text="${iterStat.index + 1}"></td>
+                <td th:text="${gudang.nama}"></td>
+                <td th:text="${gudang.alamatGudang}"></td>
+                <td>
+                    <a type="button" class="btn btn-md btn-secondary" th:href="@{/gudang/{id}(id=${gudang.id})}">Detail</a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>

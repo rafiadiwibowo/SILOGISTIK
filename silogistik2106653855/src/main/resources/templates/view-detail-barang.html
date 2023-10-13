@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+    <title>Detail Barang</title>
+</head>
+<body>
+<nav th:replace="~{fragments/navbar :: navbar}"></nav>
+<div class="container py-lg-5">
+    <div class="card mx-lg-5">
+        <h2 class="card-header text-center">
+            Detail Barang
+            <div class="col text-right">
+                <a class="btn btn-primary" th:href="@{'/barang/'+${barang.sku}+'/ubah'}">Ubah Barang</a>
+            </div>
+        </h2>
+        <div class="card-body">
+            <p class="card-text m-0"><b>Tipe Barang</b></p>
+            <p class="card-text" th:text="${barang.tipeBarang}"></p>
+            <p class="card-text m-0"><b>SKU</b></p>
+            <p class="card-text" th:text="${barang.sku}"></p>
+            <p class="card-text m-0"><b>Harga Barang</b></p>
+            <p class="card-text" th:text="${barang.hargaBarang}"></p>
+            <p class="card-text m-0"><b>Merk</b></p>
+            <p class="card-text" th:text="${barang.merk}"></p>
+            <p class="card-text m-0"><b>Total Stok di Gudang</p>
+            <p class="card-text" th:text="${barang.stok}"></p>
+
+            <div class="py-2 px-2">
+                <h5>Daftar gudang</h5>
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nama Gudang</th>
+                        <th scope="col">Alamat Gudang</th>
+                        <th scope="col">Stok</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="gudangBarang, iterStat : ${gudangBarang}">
+                        <td th:text="${iterStat.index + 1}"></td>
+                        <td th:text="${gudangBarang.gudang.nama}" style="font-weight: normal;"></td>
+                        <td th:text="${gudangBarang.gudang.alamatGudang}" style="font-weight: normal;"></td>
+                        <td th:text="${gudangBarang.stok}" style="font-weight: normal;"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center m-3">
+                <a type="button" class="btn btn-primary btn-md" href="/barang">Kembali</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

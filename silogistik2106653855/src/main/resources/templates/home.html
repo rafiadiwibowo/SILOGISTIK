@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+    <title>Home</title>
+</head>
+<body>
+<nav th:replace="~{fragments/navbar :: navbar}"></nav>
+<div class="container text-center">
+    <div class="row pt-5 pb-2">
+        <h1>
+            <i class="bi bi-journal-code"></i>
+            Silogistik
+            <i class="bi bi-journal-code"></i>
+        </h1>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <img src="https://cdn-icons-png.flaticon.com/512/4363/4363525.png" alt="Logo" style="width: 150px; height: 150px; margin: 0 auto;">
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-sm-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5 class="card-title text-center">Gudang</h5>
+                <p class="card-text text-center fw-bold" th:text="${jumlahGudang}"></p>
+                <p class="card-text card-text text-center">barang</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card text-white" style="background: #6499E9">
+            <div class="card-body">
+                <h5 class="card-title text-center">Barang</h5>
+                <p class="card-text card-text text-center fw-bold" th:text="${jumlahBarang}"></p>
+                <p class="card-text card-text text-center">barang</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card text-white" style="background:#9EDDFF">
+            <div class = "card-body">
+            <h5 class="card-title text-center">Permintaan Pengiriman</h5>
+            <p class="card-text card-text text-center fw-bold" th:text="${jumlahPermintaanPengiriman}"></p>
+                <p class="card-text card-text text-center">permintaan pengiriman</p>
+        </div>
+    </div>
+</div>
+<div class="col-sm-3">
+    <div class="card text-white" style="background:#A6F6FF">
+        <div class="card-body">
+            <h5 class="card-title text-center">Karyawan</h5>
+            <p class="card-text card-text text-center fw-bold" th:text="${jumlahKaryawan}"></p>
+            <p class="card-text card-text text-center">karyawan</p>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
