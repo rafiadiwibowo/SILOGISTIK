@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+  <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+  <title>Form Update Barang</title>
+</head>
+
+<body>
+<nav th:replace="~{fragments/navbar :: navbar}"></nav>
+<div class="container">
+  <div class="card m-4 p-4">
+    <div class="card-body">
+      <div class="justify-content-center">
+        <h2>Update Barang</h2>
+        <br>
+        <form th:action="@{'/barang/ubah'}" th:object="${barangDTO}" method="POST">
+          SKU: <br>
+          <input class="form-control" type="text" th:field="*{sku}" readonly/>
+          <br><br>
+
+          Merk Barang: <br>
+          <input class="form-control" type="text" th:field="*{merk}" />
+          <br><br>
+
+          Tipe Barang: <br>
+          <select class="form-control" name="tipeBarang" th:field="*{tipeBarang}" readonly>
+            <option value="1" th:selected="${barangDTO.tipeBarang == 1}">Produk Elektronik</option>
+            <option value="2" th:selected="${barangDTO.tipeBarang == 2}">Pakaian & Aksesoris</option>
+            <option value="3" th:selected="${barangDTO.tipeBarang == 3}">Makanan & Minuman</option>
+            <option value="4" th:selected="${barangDTO.tipeBarang == 4}">Kosmetik</option>
+            <option value="5" th:selected="${barangDTO.tipeBarang == 5}">Perlengkapan Rumah</option>
+          </select>
+          <br><br>
+
+          Harga Barang: <br>
+          <input required class="form-control" type="number" th:field="*{hargaBarang}" />
+          <br><br>
+
+          <button class="btn btn-primary" type="submit">Update</button>
+          <a class="btn btn-primary" href="/">Home</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
